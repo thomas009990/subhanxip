@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎬 Which Netflix Character Are You?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.2);
+      max-width: 90%;
+      width: 400px;
+      text-align: center;
+      animation: floatUp 0.8s ease-in-out;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+      background: linear-gradient(to right, #00f2fe, #4facfe, #f9d423);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .step {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    .btn {
+      background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 16px;
+      margin: 10px 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    #spinner {
+      margin: 30px auto;
+      width: 80px;
+      height: 80px;
+      border: 8px solid #eee;
+      border-top: 8px solid #f64f59;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #f9d423;
+      font-weight: bold;
+    }
+
+    .cta {
+      margin-top: 20px;
+    }
+
+    .cta a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 25px;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 16px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>🎬 Which Netflix Character Are You?</h1>
+
+  <div class="step active" id="step1">
+    <p>Choose your favorite genre:</p>
+    <button class="btn" onclick="nextStep(2)">Action</button>
+    <button class="btn" onclick="nextStep(2)">Drama</button>
+    <button class="btn" onclick="nextStep(2)">Thriller</button>
+  </div>
+
+  <div class="step" id="step2">
+    <p>Pick your weekend vibe:</p>
+    <button class="btn" onclick="nextStep(3)">Chill 🛋️</button>
+    <button class="btn" onclick="nextStep(3)">Party 🎉</button>
+    <button class="btn" onclick="nextStep(3)">Adventure 🌍</button>
+  </div>
+
+  <div class="step" id="step3">
+    <p>Spinning the results...</p>
+    <div id="spinner"></div>
+  </div>
+
+  <div class="step" id="step4">
+    <div id="result">🎩 You are Tommy from Peaky Blinders!</div>
+    <div class="cta">
+      <a href="#">▶️ Watch His Best Scene</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function nextStep(step) {
+    document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+    document.getElementById('step' + step).classList.add('active');
+
+    if (step === 3) {
+      // Simulate spinner result
+      setTimeout(() => {
+        document.getElementById('step3').classList.remove('active');
+        document.getElementById('step4').classList.add('active');
+      }, 2500);
+    }
+  }
+</script>
+
+</body>
+</html>
